@@ -15,7 +15,9 @@ df.groupby(["idDelito", "delito"])["total"].sum() #id = 58, 134
 
 dfH = df[(df['idDelito'] == 58) | (df['idDelito'] == 134)]
 
+dfH.to_csv("../data/homicidios-ssp.csv", index=False)
 
+# %%
 dfH = dfH.groupby(["ano"])[["total"]].sum()
 
 dfH = dfH.reset_index()
@@ -30,6 +32,6 @@ df2['origem'] = "ipea"
 df2.rename(columns={"Período":"ano", "Valor":"total"}, inplace=True)
 dfH = pd.concat([dfH, df2], axis=0)
 dfH.reset_index(inplace=True)
-dfH
+dfH.to_csv("../data/homicidios.csv", index=False)
 # %%
 
