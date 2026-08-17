@@ -36,4 +36,44 @@ ax.set_ylabel("diferença")
 ax.set_xticks(range(2011,2024, 2))
 plt.show()
 
+
+del diff
+del dfH
+# %%
+
+
+df = pd.read_csv("../data/homicidios-ssp.csv")
+
+df = df.drop(columns=["capital", "demacro", "interior"])
+df.head()
+
+
+# %%
+
+#Calculando as médias e os desvios padrões
+df.groupby("ano")["total"].describe()
+
+
+# %%
+
+#vendo a distribuição
+fig, axes = plt.subplots(nrows= 3, ncols= 5, figsize=(10, 15))
+
+axes = axes.flatten()
+
+
+for i, j in enumerate(range(2011,2026)):
+    axes[i].hist(df[ df["ano"] == j ]['total'], bins = 10 ,color="skyblue", edgecolor="black")
+    axes[i].set_title(j)
+plt.tight_layout()
+plt.show()
+
+
+# %%
+
+plt.hist(df["total"], color="skyblue", edgecolor="black")
+plt.title("Contagem de Homicídios de Mulheres durante os anos de 2011 à 2025")
+plt.xlabel("Número de homícidios")
+plt.ylabel("Frequência")
+plt.show()
 # %%
