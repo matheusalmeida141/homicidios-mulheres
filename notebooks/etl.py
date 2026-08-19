@@ -35,3 +35,14 @@ dfH.reset_index(inplace=True)
 dfH.to_csv("../data/homicidios.csv", index=False)
 # %%
 
+import pandas as pd
+
+df = pd.read_csv("../data/finlandia.csv")
+df = df[["Data","Homicídiosmulheres"]]
+
+df.rename(columns={
+    "Homicídiosmulheres": "homicidios"
+}, inplace = True)
+
+df.to_csv("../data/fin-homicidios.csv")
+# %%
