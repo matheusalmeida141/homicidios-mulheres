@@ -44,5 +44,5 @@ df.rename(columns={
     "Homicídiosmulheres": "homicidios"
 }, inplace = True)
 
-df.to_csv("../data/fin-homicidios.csv")
+df.to_csv("../data/fin-homicidios.csv", index=False)
 # %%
