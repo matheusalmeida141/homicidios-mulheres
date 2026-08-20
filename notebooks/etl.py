@@ -13,11 +13,10 @@ df2 = pd.read_csv("../data/homicidios-mulher-ipea.csv")
 
 df.groupby(["idDelito", "delito"])["total"].sum() #id = 58, 134
 
-dfH = df[((df['idDelito'] == 58) | (df['idDelito'] == 134)) | (df['idDelito'] == 61)]
+dfH = df[((df['idDelito'] == 58) | (df['idDelito'] == 134)) | (df['idDelito'] == 68)]
 
 dfH.to_csv("../data/homicidios-ssp.csv", index=False)
 
-# %%
 dfH = dfH.groupby(["ano"])[["total"]].sum()
 
 dfH = dfH.reset_index()
