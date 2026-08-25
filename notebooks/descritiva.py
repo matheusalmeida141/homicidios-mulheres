@@ -3,21 +3,21 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 import pandas as pd
+
 dfH = pd.read_csv("../data/homicidios.csv")
 
 ax = sns.lineplot(dfH, x="ano", y="total", hue="origem", palette=sns.color_palette("Set2"))
 ax.set_title("Homícidios de Mulheres no Estado de São Paulo")
 plt.show()
 
-
+#%%
 ax = sns.lineplot(dfH, x="ano", y="total", hue="origem", palette=sns.color_palette("Set2"))
 ax.set_title("Homícidios de Mulheres no Estado de São Paulo")
-ax.set_xlim(dfH[dfH["origem"] == 'ssp']['ano'].min(),
+ax.set_xlim(dfH[dfH["origem"] == 'gov']['ano'].min(),
              dfH[dfH["origem"] == "ipea"]['ano'].max())
 plt.show()
 
-
-dfH.drop(columns=["index"], inplace=True)
+# %%
 
 
 diff = pd.concat([dfH[(dfH["origem"] == 'ssp') & (dfH['ano'] <= 2023 ) ].set_index("ano"),dfH[(dfH["origem"] == 'ipea') & (dfH['ano'] >= 2011 ) ].set_index("ano") ], axis=1)
@@ -36,6 +36,7 @@ ax.set_ylabel("diferença")
 ax.set_xticks(range(2011,2024, 2))
 plt.show()
 
+#%%
 
 del diff
 del dfH
@@ -89,5 +90,6 @@ plt.plot(dfE["total"], dfH["total"], 'o')
 plt.title("Homícidios vs Estupro")
 plt.xlabel("Estrupos")
 plt.ylabel("Homícidios")
+
 print(dfE["total"].corr(dfH["total"]))
 # %%
