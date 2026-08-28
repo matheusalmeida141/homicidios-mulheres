@@ -31,5 +31,11 @@ df.groupby("PROFISSAO")[["NUM_BO"]].count().sort_values(by= "NUM_BO", ascending=
 
 
 # %%
+tabela = df.groupby("DESC_TIPOLOCAL")[["NUM_BO"]].count().sort_values(by="NUM_BO", ascending=False)
+tabela.rename(columns={"NUM_BO": "FrequenciaAbs"}, inplace=True)
+tabela["FrequenciaAbsAcumulada"] = tabela["FrequenciaAbs"].cumsum()
+tabela["FrequenciaRelativa"] = tabela["FrequenciaAbs"]/tabela["FrequenciaAbs"].sum()
+tabela["FrequemcoaRelativaAcumulada"] = tabela["FrequenciaRelativa"].cumsum()
 
+tabela
 # %%
