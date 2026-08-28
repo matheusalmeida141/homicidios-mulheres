@@ -39,3 +39,11 @@ tabela["FrequemcoaRelativaAcumulada"] = tabela["FrequenciaRelativa"].cumsum()
 
 tabela
 # %%
+tabela = df.groupby("HORA_FATO")[["NUM_BO"]].count().sort_values("NUM_BO", ascending=False).head(10)
+sns.barplot(tabela, y="HORA_FATO", x="NUM_BO")
+plt.xlabel("Frequência")
+plt.ylabel("Hora")
+plt.title("Os 10 horários mais comuns que aconteceram feminicídio entre 2015 ~ 2022")
+# %%
+tabela
+# %%
