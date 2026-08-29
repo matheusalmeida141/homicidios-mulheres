@@ -64,3 +64,10 @@ plt.ylabel("Números de casos")
 
 # %%
 
+idx = tabela.groupby(["ANO"])["NUM_BO"].idxmax()
+tb = tabela.loc[idx]
+tb.rename(columns={"NUM_BO":"QUANTIDADE"},inplace=True)
+tb
+# %%
+
+# %%
