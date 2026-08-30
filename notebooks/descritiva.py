@@ -48,26 +48,27 @@ plt.title("Os 10 horários mais comuns que aconteceram feminicídio entre 2015 ~
 tabela
 
 # %%
-df["DATA_FATO"] = pd.to_datetime(df["DATA_FATO"])
-tabela = df.groupby("DATA_FATO")[["NUM_BO"]].count()
-tabela = tabela.reset_index()
-tabela["MES"],tabela["ANO"] = tabela["DATA_FATO"].dt.month, tabela["DATA_FATO"].dt.year
-tabela = tabela.groupby(["ANO","MES"])["NUM_BO"].count().reset_index()
-tabela["MES_ANO"] = tabela["MES"].astype(str) + '-' + tabela["ANO"].astype(str)
-tabela["MES_ANO"] = pd.to_datetime(tabela["MES_ANO"])
 
+tabela = df.groupby(["ANO ESTATISTICA","MÊS ESTATISTICA", ])[["NUM_BO"]].count().reset_index()
+tabela["ANO_MES"] = tabela["ANO ESTATISTICA"].astype(str) + '-' + tabela["MÊS ESTATISTICA"].astype(str)
+tabela["ANO_MES"] = pd.to_datetime(tabela["ANO_MES"], format="%Y-%m")
+tabela
 plt.figure(dpi=500)
-sns.lineplot(tabela, x="MES_ANO", y="NUM_BO")
+sns.lineplot(tabela, x="ANO_MES", y="NUM_BO")
 plt.title("Número de feminicídio durantes anos e messes entre 2015 ~ 2022")
 plt.xlabel("Ano")
 plt.ylabel("Números de casos")
+plt.show()
+# %%
+tabela
+
+# idx = tabela.groupby(["ANO"])["NUM_BO"].idxmax()
+# tb = tabela.loc[idx]
+# tb.rename(columns={"NUM_BO":"QUANTIDADE"},inplace=True)
+# tb
+# %%
+tabela.groupby("ANO")["NUM_BO"].sum()
 
 # %%
-
-idx = tabela.groupby(["ANO"])["NUM_BO"].idxmax()
-tb = tabela.loc[idx]
-tb.rename(columns={"NUM_BO":"QUANTIDADE"},inplace=True)
-tb
-# %%
-
+df.groupby("ANO ESTATISTICA")["NUM_BO"].count()
 # %%
