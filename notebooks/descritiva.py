@@ -60,14 +60,14 @@ plt.xlabel("Ano")
 plt.ylabel("Números de casos")
 plt.show()
 # %%
-tabela
 
-# idx = tabela.groupby(["ANO"])["NUM_BO"].idxmax()
-# tb = tabela.loc[idx]
-# tb.rename(columns={"NUM_BO":"QUANTIDADE"},inplace=True)
-# tb
+
+idx = tabela.groupby(["ANO ESTATISTICA"])["NUM_BO"].idxmax()
+tb = tabela.loc[idx]
+tb.rename(columns={"NUM_BO":"QUANTIDADE"},inplace=True)
+tb.reset_index(drop=True)
 # %%
-tabela.groupby("ANO")["NUM_BO"].sum()
+tabela.groupby("ANO ESTATISTICA")["NUM_BO"].agg(["mean", "median", "std", "sum"])
 
 # %%
 df.groupby("ANO ESTATISTICA")["NUM_BO"].count()
