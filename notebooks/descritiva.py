@@ -31,7 +31,7 @@ df[ df["IDADE_PESSOA"] <= 20].groupby("IDADE_PESSOA")[["NUM_BO"]].count()
 
 # %%
 
-df.groupby("PROFISSAO")[["NUM_BO"]].count().sort_values(by= "NUM_BO", ascending=False).head(10)
+df.groupby("PROFISSAO")[["NUM_BO"]].count().sort_values(by= "NUM_BO", ascending=False).head(20)
 
 
 # %%
